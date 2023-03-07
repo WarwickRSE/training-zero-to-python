@@ -1,0 +1,10 @@
+{
+     "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+     "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.wordBasedSuggestions": false,
+     }
+}
