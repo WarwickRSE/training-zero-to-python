@@ -6,5 +6,6 @@
             "!Module"
         ],
         "editor.wordBasedSuggestions": false,
-     }
+     },
+     "notebook.output.textLineLimit": 60
 }
