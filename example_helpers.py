@@ -39,17 +39,17 @@ def check_combo(input_op, input_1, input_2):
         print(f"type {type(i1)} {input_op} type {type(i2)}, yeilds {my_tmp_type}")
 
 
-def check_fizzbuzz(input_fizzbuzz):
+def check_fizzbuzz(input_fizzbuzz, fizzbuzz_size=20):
     correct = True
     for i in range(0, len(input_fizzbuzz)):
         if input_fizzbuzz[i] != fizzbuzz(i+1):
             print(f"You have an error with fizzbuzz element {i}")
             correct = False
             break
-    if len(input_fizzbuzz) == 20 and correct:
-        print(f"Success the first 20 numbers fizzbuzzed are \n {input_fizzbuzz}")
+    if len(input_fizzbuzz) == fizzbuzz_size and correct:
+        print(f"Success the first {fizzbuzz_size} numbers fizzbuzzed are \n {input_fizzbuzz}")
     elif correct:
-        print(f'You dont have all 20 elements you only submitted {len(input_fizzbuzz)}')
+        print(f'You dont have all {fizzbuzz_size} elements you only submitted {len(input_fizzbuzz)}')
 
 
 def fizzbuzz (number_to_fizzbuzz):
