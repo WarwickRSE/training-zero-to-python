@@ -73,4 +73,33 @@ def fizzbuzz (number_to_fizzbuzz):
         ret = number_to_fizzbuzz
 
     return ret
-        
+
+
+def check_fizz(input_fizz, fizz_size):
+    fizzed = [i if i%3 else 'fizz' for i in range(1,101)]
+    correct = True
+    for i in range(0, len(input_fizz)):
+        if input_fizz[i] != fizzed[i]:
+            print(f"You have an error with fizzed element {i}")
+            correct = False
+            break
+    if len(input_fizz) == fizz_size and correct:
+        print(f"Success the first {fizz_size} numbers fizzed are \n {input_fizz}")
+    elif correct:
+        print(f'You dont have all {fizz_size} elements you only submitted {len(input_fizz)}')
+
+
+
+def check_buzz(input_buzz, buzz_size):
+    buzzed = [i if i%5 else 'buzz' for i in range(1,101)] 
+    correct = True
+    for i in range(0, len(input_buzz)):
+        if input_buzz[i] != buzzed[i]:
+            print(f"You have an error with buzzed element {i}")
+            correct = False
+            break
+    if len(input_buzz) == buzz_size and correct:
+        print(f"Success the first {buzz_size} numbers buzzed are \n {input_buzz}")
+    elif correct:
+        print(f'You dont have all {buzz_size} elements you only submitted {len(input_buzz)}')
+
