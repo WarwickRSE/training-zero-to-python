@@ -6,5 +6,7 @@
         ],
         "editor.wordBasedSuggestions": false,
      },
-     "notebook.output.textLineLimit": 60
+    "notebook.output.textLineLimit": 60,
+    "python.envFile": "../.venv",
+    "python.defaultInterpreterPath": "",
 }

@@ -1,3 +1,14 @@
+import os, contextlib
+
+
+def supress_stdout(func):
+    def wrapper(*a, **ka):
+        with open(os.devnull, 'w') as devnull:
+            with contextlib.redirect_stdout(devnull):
+                return func(*a, **ka)
+    return wrapper
+
+
 def check_combo(input_op, input_1, input_2):
     """
     A function to print the various results of different arithmetic operator input combonations on two input types.
@@ -103,3 +114,51 @@ def check_buzz(input_buzz, buzz_size):
     elif correct:
         print(f'You dont have all {buzz_size} elements you only submitted {len(input_buzz)}')
 
+
+def check_1_2_boo(fn_to_check):
+    fn_no_stdout = supress_stdout(fn_to_check)
+
+    out1 = fn_no_stdout(1)
+    out2 = fn_no_stdout(2)
+    out3 = fn_no_stdout(3)
+
+    message = "Your function:\n"
+    if out1 != "1":
+        message += "Produces the wrong output for input of 1\n"
+    else:
+        message += "Is correct for input of 1\n"
+    if out2 != "2":
+        message += "Produces the wrong output for input of 2\n"
+    else:
+        message += "Is correct for input of 1\n"
+    if out3 != "boo":
+        message += "Produces the wrong output for input that isnt 1 or 2\n"
+    else:
+        message += "Is correct for inputs that are not 1 or 2\n" 
+    
+    print(message)
+
+
+def check_functions(fizz_fun, buzz_fun, fizzbuzz_fun):
+    numbers_to_check = [1,100,3,9,5,10,15,45] 
+    number_failed = 0
+    # Test Fizz
+    for test_num in numbers_to_check:
+        correct_ans = fizzbuzz(test_num) == "fizz" 
+        if fizz_fun(test_num) != correct_ans:
+            print("check_fizz failed with input:", test_num)
+            number_failed+=1
+    # Test Buzz
+    for test_num in numbers_to_check:
+        correct_ans = fizzbuzz(test_num) == "buzz" 
+        if buzz_fun(test_num) != correct_ans:
+            print("check_buzz failed with input:", test_num)
+            number_failed+=1
+    # Test Fizzbuzz
+    for test_num in numbers_to_check:
+        correct_ans = fizzbuzz(test_num) == "fizzbuzz" 
+        if fizzbuzz_fun(test_num) != correct_ans:
+            print("check_fizzbuzz failed with input:", test_num)
+            number_failed+=1
+    
+    print(f'Tests Complete: {24-number_failed} Tests Passed, {number_failed} Tests Failed')
