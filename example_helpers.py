@@ -162,3 +162,152 @@ def check_functions(fizz_fun, buzz_fun, fizzbuzz_fun):
             number_failed+=1
     
     print(f'Tests Complete: {24-number_failed} Tests Passed, {number_failed} Tests Failed')
+
+
+def keyword_check_fizz(number_to_check: int, fizz_num: int = 3, buzz_num: int = 5) -> bool:
+    """ This function checks if a number is fizz but not buzz, i.e. number is a multiple of 3 but not 5, and returns True if it is.
+    Paramaters
+    ----------
+    number_to_check : int
+        input integer to check for fizz
+    fizz_num : int
+        input integer to use for fizz check
+    buzz_num : int
+        input integer to use for buzz check
+
+    Returns
+    -------
+    bool
+        True if number passes fizz check but not buzz check.
+    """
+    if number_to_check % fizz_num == 0:
+        output = True
+    else:
+        output = False
+
+    if number_to_check % buzz_num == 0:
+        output = False
+
+    return output
+
+def keyword_check_buzz(number_to_check: int, fizz_num: int = 3, buzz_num: int = 5) -> bool:
+    """ This function checks if a number is fizz but not buzz, i.e. number is a multiple of 3 but not 5, and returns True if it is.
+    Paramaters
+    ----------
+    number_to_check : int
+        input integer to check for fizz
+    fizz_num : int
+        input integer to use for fizz check
+    buzz_num : int
+        input integer to use for buzz check
+
+    Returns
+    -------
+    bool
+        True if number passes buzz check but not fizz check.
+    """
+    if number_to_check % buzz_num == 0:
+        output = True
+    else:
+        output = False
+
+    if number_to_check % fizz_num == 0:
+        output = False
+
+    return output
+
+def keyword_check_fizzbuzz(number_to_check: int, fizz_num: int = 3, buzz_num: int = 5) -> bool:
+    """ This function checks if a number is fizz but not buzz, i.e. number is a multiple of 3 but not 5, and returns True if it is.
+    Paramaters
+    ----------
+    number_to_check : int
+        input integer to check for fizz
+    fizz_num : int
+        input integer to use for fizz check
+    buzz_num : int
+        input integer to use for buzz check
+
+    Returns
+    -------
+    bool
+        True if number passes fizz and buzz check.
+    """
+    if number_to_check % fizz_num == 0:
+        output = True
+    else:
+        output = False
+
+    if number_to_check % buzz_num == 0:
+        output = True
+    else:
+        output = False
+
+    return output
+
+def keyword_fizzbuzz(list_to_mutate: list, fizz_num: int = 3, buzz_num: int = 5, fizz_word: str = 'fizz', buzz_word: str = 'buzz') -> None:
+    """ This function takes a list of numbers and mutates it to replace numbers that are multiples of fizz_num with fizz_word, multiples of buzz_num with buzz_word, and multiples of fizz_num*buzz_num with fizz_word+buzz_word.
+    Paramaters
+    ----------
+    list_to_mutate : list
+        input list of numbers to mutate
+    fizz_num : int
+        input integer to use for fizz check
+    buzz_num : int
+        input integer to use for buzz check
+
+    Returns
+    -------
+    None
+        This function does not return anything, but mutates the list_to_mutate in place.
+    """
+    for i in range(len(list_to_mutate)):
+        if keyword_check_fizzbuzz(list_to_mutate[i], fizz_num=fizz_num, buzz_num=buzz_num):
+            list_to_mutate[i] = fizz_word + buzz_word
+        elif keyword_check_fizz(list_to_mutate[i], fizz_num=fizz_num, buzz_num=buzz_num):
+            list_to_mutate[i] = fizz_word
+        elif keyword_check_buzz(list_to_mutate[i], fizz_num=fizz_num, buzz_num=buzz_num):
+            list_to_mutate[i] = buzz_word
+
+
+
+def check_keyword_fizzbuzz(learner_function):
+    """ This function checks if a function is correct for the keyword_fizzbuzz function.
+    Paramaters
+    ----------
+    learner_function : function
+        input function to check for correctness
+
+    Returns
+    -------
+    None
+        This function does not return anything, but prints out a message indicating if the function is correct or not.
+    """
+    test_list = [i for i in range(1,101)]
+    correct_list = [i for i in range(1,101)]
+    print("Testing your function with the default values.")
+    keyword_fizzbuzz(correct_list)
+    learner_function(test_list)
+    if test_list == correct_list:
+        print("Your function is correct when using the default values.")
+    else:
+        print("Your function is not correct when using the default values. Please try again.")
+    
+    print("Testing your function with different values for fizz_num and buzz_num.")
+    test_list = [i for i in range(1,101)]
+    correct_list = [i for i in range(1,101)]
+    keyword_fizzbuzz(correct_list, fizz_num=4, buzz_num=7)
+    learner_function(test_list, fizz_num=4, buzz_num=7)
+    if test_list == correct_list:
+        print("Your function is correct when using different values for fizz_num and buzz_num.")
+    else:
+        print("Your function is not correct when using different values for fizz_num and buzz_num. Please try again.")
+    
+    print("Testing your function with different values for fizz_word and buzz_word.")
+    test_list = [i for i in range(1,101)]
+    correct_list = [i for i in range(1,101)]
+    keyword_fizzbuzz(correct_list, fizz_word='whizz', buzz_word='bang')
+    learner_function(test_list, fizz_word='whizz', buzz_word='bang')
+    if test_list == correct_list:
+        print("Your function is correct when using different values for fizz_word and buzz_word.")
+    else:
+        print("Your function is not correct when using different values for fizz_word and buzz_word. Please try again.")
