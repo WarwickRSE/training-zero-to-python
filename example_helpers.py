@@ -311,3 +311,81 @@ def check_keyword_fizzbuzz(learner_function):
         print("Your function is correct when using different values for fizz_word and buzz_word.")
     else:
         print("Your function is not correct when using different values for fizz_word and buzz_word. Please try again.")
+
+
+
+
+def check_formatted_lorum():
+    # This function checks if the formatted lorum ipsum file is correct.
+
+    # First get the correct formatted lorum ipsum file.
+    with open('lorem_ipsum.txt', 'r') as f:
+        formatted_lines = []
+        for line in f:
+            words_in_line = line.split()
+            current_line_length = 0
+            for word in words_in_line:
+                if current_line_length+len(word) < 90:
+                    formatted_lines.append(word)
+                    formatted_lines.append(" ")
+                    current_line_length += 1
+                else:
+                    formatted_lines.append("\n")
+                    formatted_lines.append(word)
+                    formatted_lines.append(" ")
+                    current_line_length = 0
+                current_line_length += len(word)
+            # We will always have a trailing space but instead we want a doubble newline to indicate the end of a paragraph.
+            # Instead of removing the trailing space we will just replace the last list element with a double newline.
+            formatted_lines[-1] = "\n\n"
+
+    # Now get the learner's formatted lorum ipsum file.
+    with open('formatted_lorem_ipsum.txt', 'r') as f:
+        learner_lines = f.readlines()
+    
+
+    # Now check if the two files are the same.
+    if formatted_lines == learner_lines:
+        print("Your formatted lorum ipsum file is correct.")
+    else:
+        length_error_line = []
+        no_space_line = []
+        few_space_line = []
+        too_many_paragraphs = []
+        lines_with_paragraphs = []
+        correct_lines_with_paragraphs = []
+        
+        for line_num, line in enumerate(learner_lines):
+            line_length = len(line)
+            spaces_in_line = line.count(" ")
+            paragraph_count = line.count("\n\n")
+
+            if line_length>90:
+                length_error_line.append(line_num)
+            if spaces_in_line == 0:
+                no_space_line.append(line_num)
+            elif spaces_in_line < 10:
+                few_space_line.append(line_num)
+            if paragraph_count > 1:
+                too_many_paragraphs.append(line_num)
+            elif paragraph_count == 1:
+                lines_with_paragraphs.append(line_num)
+        
+        for line_num, line in enumerate(formatted_lines):
+            paragraph_count = line.count("\n\n")
+            if paragraph_count == 1:
+                correct_lines_with_paragraphs.append(line_num)
+
+        # Print the errors.
+        if len(length_error_line) > 0:
+            print(f"The following lines are too long: {length_error_line}")
+        if len(no_space_line) > 0:
+            print(f"The following lines have no spaces: {no_space_line}")
+        if len(few_space_line) > 0:
+            print(f"The following lines have too few spaces: {few_space_line}")
+        if len(too_many_paragraphs) > 0:
+            print(f"The following lines have too many paragraphs: {too_many_paragraphs}")
+        if lines_with_paragraphs == correct_lines_with_paragraphs:
+            print(f"The following lines have paragraphs: {lines_with_paragraphs}")
+
+
