@@ -143,7 +143,7 @@ def check_1_2_boo(fn_to_check):
     if out2 != "2":
         message += "Produces the wrong output for input of 2\n"
     else:
-        message += "Is correct for input of 1\n"
+        message += "Is correct for input of 2\n"
     if out3 != "boo":
         message += "Produces the wrong output for input that isn't 1 or 2\n"
     else:
