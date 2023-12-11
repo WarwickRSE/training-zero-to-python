@@ -395,7 +395,7 @@ def check_formatted_lorem():
             formatted_lines[-1] = "\n\n"
 
     # Now get the learner's formatted lorem ipsum file.
-    with open('formatted_lorem_ipsum.txt', 'r') as f:
+    with open('lorem_ipsum_formatted.txt', 'r') as f:
         learner_lines = f.readlines()
 
     # Now check if the two files are the same.
