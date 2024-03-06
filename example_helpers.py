@@ -265,7 +265,7 @@ def keyword_check_fizzbuzz(
     else:
         output = False
 
-    if number_to_check % buzz_num == 0:
+    if output and (number_to_check % buzz_num == 0):
         output = True
     else:
         output = False
@@ -386,13 +386,19 @@ def check_formatted_lorem():
                     formatted_lines.append("\n")
                     formatted_lines.append(word)
                     formatted_lines.append(" ")
-                    current_line_length = 0
+                    current_line_length = 1
                 current_line_length += len(word)
             # We will always have a trailing space but instead we want a
             # double newline to indicate the end of a paragraph.
             # Instead of removing the trailing space we will just replace the
             # last list element with a double newline.
             formatted_lines[-1] = "\n\n"
+
+    with open('lorem_ipsum_formatted_sol.txt', 'w') as f:
+        f.writelines(formatted_lines)
+
+    with open('lorem_ipsum_formatted_sol.txt', 'r') as f:
+        formatted_lines = f.readlines()
 
     # Now get the learner's formatted lorem ipsum file.
     with open('lorem_ipsum_formatted.txt', 'r') as f:
